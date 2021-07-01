@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import Picker from 'react-month-picker'
+import Picker from "react-month-picker";
 
 export const SignupForm = () => {
   // Pass the useFormik() hook initial form values and a submit function that will
@@ -12,6 +12,7 @@ export const SignupForm = () => {
       firstName: "",
       lastName: "",
       password: "",
+      month: "",
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -88,6 +89,19 @@ export const SignupForm = () => {
         />
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
+        ) : null}
+      </div>
+      <div id="sign-up-form-month">
+        <label htmlFor="month">Month</label>
+        <input
+          id="month"
+          name="month"
+          type="month"
+          onChange={formik.handleChange}
+          value={formik.values.month}
+        />
+        {formik.touched.month && formik.errors.password ? (
+          <div>{formik.errors.month}</div>
         ) : null}
       </div>
       <button type="submit">Submit</button>
